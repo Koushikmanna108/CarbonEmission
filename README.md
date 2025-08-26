@@ -16,6 +16,8 @@ It is built with Flask and provides a web interface for users to input their dat
 • Interactive HTML templates (form.html, home.html, result.html)
 
 ## 📂 Project Structure
+
+```
 carbon-emission-estimator/
 │── notebook/                # Jupyter notebooks for experiments
 │   └── Model Training.ipynb # Model training notebook
@@ -40,25 +42,36 @@ carbon-emission-estimator/
 │── README.md                # Documentation
 │── .gitignore
 │── venv/                    # Virtual Environment
-|── setup.py                   
+|── setup.py    
+
+```
 
 ## ⚙️ Installation
 ### 1. Clone the repository
+```
 git clone https://github.com/Koushikmanna108/CarbonEmission.git
-cd CarbonEmission
 
+cd CarbonEmission
+```
 ### 2. Create & activate environment (Windows + Conda)
+```
 conda create -p venv python=3.13 -y
+
 conda activate venv/
 
+```
+
 ### 3. Install dependencies
+```
 pip install -r requirements.txt
+```
 
 ## 🚀 Usage
 ### Run the Flask app
+```
 python app.py
 
-
+```
 ## 📊 Example Prediction
 
 ### Input (via form):
@@ -89,4 +102,5 @@ python app.py
 🤝 Contributing
 
 Pull requests are welcome!
+
 For major changes, please open an issue first to discuss.
