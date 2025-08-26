@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sustainability Lifestyle Predictor</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-gradient: linear-gradient(135deg, #1a936f, #88d498);
+      --secondary-gradient: linear-gradient(135deg, #2575fc, #6a11cb);
+      --card-shadow: 0 15px 30px rgba(26, 147, 111, 0.2);
+    }
+    
+    body {
+      background: linear-gradient(135deg, #c9f5dc, #e5f9f0);
+      font-family: 'Poppins', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 30px;
+      color: #2c3e50;
+    }
+    
+    .app-container {
+      width: 100%;
+      max-width: 1000px;
+    }
+    
+    .app-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .app-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a936f;
+      margin-bottom: 10px;
+    }
+    
+    .app-subtitle {
+      font-size: 1.1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .card {
+      border-radius: 20px;
+      box-shadow: var(--card-shadow);
+      background: #fff;
+      padding: 30px;
+      border: none;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 8px;
+      background: var(--primary-gradient);
+    }
+    
+    .form-section {
+      margin-bottom: 25px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a936f;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .section-title i {
+      margin-right: 10px;
+      font-size: 1.5rem;
+    }
+    
+    .form-label {
+      font-weight: 600;
+      color: #2c3e50;
+      margin-bottom: 8px;
+    }
+    
+    .form-control, .form-select {
+      border-radius: 12px;
+      padding: 12px 15px;
+      border: 2px solid #e0e0e0;
+      transition: all 0.3s;
+    }
+    
+    .form-control:focus, .form-select:focus {
+      border-color: #1a936f;
+      box-shadow: 0 0 0 0.25rem rgba(26, 147, 111, 0.25);
+    }
+    
+    .input-icon {
+      position: relative;
+    }
+    
+    .input-icon i {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #1a936f;
+    }
+    
+    .input-icon .form-control, .input-icon .form-select {
+      padding-left: 45px;
+    }
+    
+    .btn-custom {
+      background: var(--primary-gradient);
+      color: white;
+      border-radius: 12px;
+      padding: 15px 25px;
+      font-weight: bold;
+      transition: 0.3s;
+      border: none;
+      font-size: 1.1rem;
+      width: 100%;
+      margin-top: 10px;
+    }
+    
+    .btn-custom:hover {
+      background: linear-gradient(135deg, #157a58, #68c286);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(26, 147, 111, 0.4);
+    }
+    
+    .form-row {
+      display: flex;
+      flex-wrap: wrap;
+      margin-right: -10px;
+      margin-left: -10px;
+    }
+    
+    .form-col {
+      padding-right: 10px;
+      padding-left: 10px;
+      flex: 1 0 0%;
+      margin-bottom: 15px;
+    }
+    
+    @media (max-width: 768px) {
+      .form-col {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+    
+    .eco-badge {
+      display: inline-block;
+      background: #e8f5e9;
+      color: #1a936f;
+      border-radius: 50px;
+      padding: 5px 15px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 5px;
+    }
+    
+    .floating-leaves {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+    
+    .leaf {
+      position: absolute;
+      font-size: 24px;
+      color: rgba(26, 147, 111, 0.15);
+      animation: float 20s infinite linear;
+    }
+    
+    @keyframes float {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-container">
+    <div class="app-header">
+      <h1 class="app-title"><i class="fas fa-leaf"></i> Sustainability Lifestyle Predictor</h1>
+      <p class="app-subtitle">Discover how sustainable your lifestyle is and get personalized recommendations for reducing your environmental footprint.</p>
+    </div>
+    
+    <div class="card">
+      <!-- Decorative leaves -->
+      <div class="floating-leaves">
+        <div class="leaf" style="top: 10%; left: 5%; animation-delay: 0s;"><i class="fas leaf-icon fa-leaf"></i></div>
+        <div class="leaf" style="top: 20%; right: 5%; animation-delay: 2s;"><i class="fas leaf-icon fa-leaf"></i></div>
+        <div class="leaf" style="top: 40%; left: 8%; animation-delay: 4s;"><i class="fas leaf-icon fa-seedling"></i></div>
+        <div class="leaf" style="top: 60%; right: 7%; animation-delay: 6s;"><i class="fas leaf-icon fa-leaf"></i></div>
+        <div class="leaf" style="top: 80%; left: 6%; animation-delay: 8s;"><i class="fas leaf-icon fa-seedling"></i></div>
+      </div>
+      
+      <form action="{{ url_for('predict_datapoint') }}" method="post">
+        <!-- Personal Information Section -->
+        <div class="form-section">
+          <h3 class="section-title"><i class="fas fa-user"></i> Personal Information</h3>
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">Body Type</label>
+              <div class="input-icon">
+                <i class="fas fa-weight-scale"></i>
+                <select class="form-control" name="Body_Type" required>
+                  <option selected disabled value="">Select Body Type</option>
+                  <option value="overweight">Overweight</option>
+                  <option value="obese">Obese</option>
+                  <option value="underweight">Underweight</option>
+                  <option value="normal">Normal</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">Gender</label>
+              <div class="input-icon">
+                <i class="fas fa-venus-mars"></i>
+                <select class="form-control" name="Gender" required>
+                  <option selected disabled value="">Select Gender</option>
+                  <option value="female">Female</option>
+                  <option value="male">Male</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Diet & Consumption Section -->
+        <div class="form-section">
+          <h3 class="section-title"><i class="fas fa-utensils"></i> Diet & Consumption</h3>
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">Diet Type</label>
+              <div class="input-icon">
+                <i class="fas fa-carrot"></i>
+                <select class="form-control" name="Diet" required>
+                  <option selected disabled value="">Select Diet</option>
+                  <option value="pescatarian">Pescatarian</option>
+                  <option value="vegetarian">Vegetarian</option>
+                  <option value="omnivore">Omnivore</option>
+                  <option value="vegan">Vegan</option>
+                </select>
+              </div>
+              <span class="eco-badge">Vegan has lowest carbon footprint</span>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">Monthly Grocery Bill (₹)</label>
+              <div class="input-icon">
+                <i class="fas fa-receipt"></i>
+                <input class="form-control" type="number" name="Monthly_Grocery_Bill" min="0" placeholder="Enter Grocery Bill" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">How Many New Clothes Monthly</label>
+              <div class="input-icon">
+                <i class="fas fa-tshirt"></i>
+                <input class="form-control" type="number" name="How_Many_New_Clothes_Monthly" min="0" placeholder="Enter Count" required>
+              </div>
+              <span class="eco-badge">Fewer clothes = lower impact</span>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">Waste Bag Size</label>
+              <div class="input-icon">
+                <i class="fas fa-trash-alt"></i>
+                <select class="form-control" name="Waste_Bag_Size" required>
+                  <option selected disabled value="">Select Size</option>
+                  <option value="large">Large</option>
+                  <option value="extra large">Extra Large</option>
+                  <option value="small">Small</option>
+                  <option value="medium">Medium</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">Waste Bag Weekly Count</label>
+              <div class="input-icon">
+                <i class="fas fa-trash"></i>
+                <input class="form-control" type="number" name="Waste_Bag_Weekly_Count" min="0" placeholder="Enter Weekly Bag Count" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Energy & Transport Section -->
+        <div class="form-section">
+          <h3 class="section-title"><i class="fas fa-bolt"></i> Energy & Transport</h3>
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">Transport Method</label>
+              <div class="input-icon">
+                <i class="fas fa-bus"></i>
+                <select class="form-control" name="Transport" required>
+                  <option selected disabled value="">Select Transport</option>
+                  <option value="public">Public</option>
+                  <option value="walk/bicycle">Walk/Bicycle</option>
+                  <option value="private">Private</option>
+                </select>
+              </div>
+              <span class="eco-badge">Walking/biking is most sustainable</span>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">Vehicle Monthly Distance (Km)</label>
+              <div class="input-icon">
+                <i class="fas fa-road"></i>
+                <input class="form-control" type="number" name="Vehicle_Monthly_Distance_Km" min="0" placeholder="Enter Distance in Km" required>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">Heating Energy Source</label>
+              <div class="input-icon">
+                <i class="fas fa-fire"></i>
+                <select class="form-control" name="Heating_Energy_Source" required>
+                  <option selected disabled value="">Select Source</option>
+                  <option value="coal">Coal</option>
+                  <option value="natural gas">Natural Gas</option>
+                  <option value="wood">Wood</option>
+                  <option value="electricity">Electricity</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">Energy Efficiency</label>
+              <div class="input-icon">
+                <i class="fas fa-solar-panel"></i>
+                <select class="form-control" name="Energy_Efficiency" required>
+                  <option selected disabled value="">Select Option</option>
+                  <option value="No">No</option>
+                  <option value="Sometimes">Sometimes</option>
+                  <option value="Yes">Yes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">Frequency of Traveling by Air</label>
+              <div class="input-icon">
+                <i class="fas fa-plane"></i>
+                <select class="form-control" name="Frequency_of_Traveling_by_Air" required>
+                  <option selected disabled value="">Select Frequency</option>
+                  <option value="frequently">Frequently</option>
+                  <option value="rarely">Rarely</option>
+                  <option value="never">Never</option>
+                  <option value="very frequently">Very Frequently</option>
+                </select>
+              </div>
+              <span class="eco-badge">Air travel has high carbon impact</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Daily Habits Section -->
+        <div class="form-section">
+          <h3 class="section-title"><i class="fas fa-calendar-day"></i> Daily Habits</h3>
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">How Often Shower</label>
+              <div class="input-icon">
+                <i class="fas fa-shower"></i>
+                <select class="form-control" name="How_Often_Shower" required>
+                  <option selected disabled value="">Select Frequency</option>
+                  <option value="daily">Daily</option>
+                  <option value="less frequently">Less Frequently</option>
+                  <option value="more frequently">More Frequently</option>
+                  <option value="twice a day">Twice a Day</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">Social Activity</label>
+              <div class="input-icon">
+                <i class="fas fa-users"></i>
+                <select class="form-control" name="Social_Activity" required>
+                  <option selected disabled value="">Select Activity</option>
+                  <option value="often">Often</option>
+                  <option value="never">Never</option>
+                  <option value="sometimes">Sometimes</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-col">
+              <label class="form-label">How Long TV/PC Daily (Hours)</label>
+              <div class="input-icon">
+                <i class="fas fa-tv"></i>
+                <input class="form-control" type="number" name="How_Long_TV_PC_Daily_Hour" min="0" placeholder="Enter Hours" required>
+              </div>
+            </div>
+            
+            <div class="form-col">
+              <label class="form-label">How Long Internet Daily (Hours)</label>
+              <div class="input-icon">
+                <i class="fas fa-wifi"></i>
+                <input class="form-control" type="number" name="How_Long_Internet_Daily_Hour" min="0" placeholder="Enter Hours" required>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="d-grid">
+          <button class="btn btn-custom" type="submit">
+            <i class="fas fa-globe-americas"></i> Calculate My Sustainability Score
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Add floating leaves dynamically
+    document.addEventListener('DOMContentLoaded', function() {
+      const floatingLeaves = document.querySelector('.floating-leaves');
+      const leafIcons = ['fa-leaf', 'fa-seedling', 'fa-tree', 'fa-spa'];
+      
+      for (let i = 0; i < 12; i++) {
+        const leaf = document.createElement('div');
+        leaf.classList.add('leaf');
+        
+        // Random position
+        const left = Math.random() * 100;
+        const top = Math.random() * 100;
+        
+        // Random animation delay
+        const delay = Math.random() * 15;
+        
+        // Random icon
+        const iconIndex = Math.floor(Math.random() * leafIcons.length);
+        
+        leaf.style.left = `${left}%`;
+        leaf.style.top = `${top}%`;
+        leaf.style.animationDelay = `${delay}s`;
+        leaf.innerHTML = `<i class="fas ${leafIcons[iconIndex]}"></i>`;
+        
+        floatingLeaves.appendChild(leaf);
+      }
+    });
+  </script>
+</body>
+</html>
