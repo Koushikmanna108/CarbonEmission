@@ -1,4 +1,4 @@
-﻿Body Type,Sex,Diet,How Often Shower,Heating Energy Source,Transport,Social Activity,Monthly Grocery Bill,Frequency of Traveling by Air,Vehicle Monthly Distance Km,Waste Bag Size,Waste Bag Weekly Count,How Long TV PC Daily Hour,How Many New Clothes Monthly,How Long Internet Daily Hour,Energy efficiency,CarbonEmission
+﻿Body_Type,Gender,Diet,How_Often_Shower,Heating_Energy_Source,Transport,Social_Activity,Monthly_Grocery_Bill,Frequency_of_Traveling_by_Air,Vehicle_Monthly_Distance_Km,Waste_Bag_Size,Waste_Bag_Weekly_Count,How_Long_TV_PC_Daily_Hour,How_Many_New_Clothes_Monthly,How_Long_Internet_Daily_Hour,Energy_Efficiency,CarbonEmission
 overweight,female,pescatarian,daily,coal,public,often,230,frequently,210,large,4,7,26,1,No,2238
 obese,female,vegetarian,less frequently,natural gas,walk/bicycle,often,114,rarely,9,extra large,3,9,38,5,No,1892
 overweight,male,omnivore,more frequently,wood,private,never,138,never,2472,small,1,14,47,6,Sometimes,2595
